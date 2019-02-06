@@ -1,45 +1,59 @@
 document.addEventListener ("DOMContentLoaded", () => {
-
-	let listElements = document.querySelectorAll(".kasse");
-
-	let count=0;
+	
+	let counterAmount=[1,1,1];
 	let countMin=0;
 	let countMax=2000;
-	
-	listElements.forEach ( (listElements) => {
+	let btninElements = document.querySelectorAll(".increase");
+	let btndeElements = document.querySelectorAll(".decrease");
+	let amountElements = document.querySelectorAll(".antal")
 
-	console.log(count);
+	console.log(counterAmount);
+
+	btninElements.forEach((btninElement, index) => {
+
+		btninElement.addEventListener("click", () => {
 	
-	document.querySelector(".increase").addEventListener("click", () => {
+			counterAmount[index]++;
+			restrictCount(index);
+			updateCount(index);
+			
+		});
+
+	});
+
+	btndeElements.forEach((btndeElement, index) => {
+
+		btndeElement.addEventListener("click", () => {
 	
-	count++;
-	restrictCount();
-	updateCount();
-	
+			counterAmount[index]--;
+			restrictCount(index);
+			updateCount(index);
+			
+		});
+
+	});
+
+	amountElements.forEach((amountElement, index) => {
+
+updateCount(index);
+
 	});
 	
-	document.querySelector(".decrease").addEventListener("click", () => {
-	
-	count--;
-	restrictCount();
-	updateCount();
-	
-	});
-	
-	function restrictCount() {
-		if (count < countMin) {
-			count=countMin;
-		}
-		else
-		if (count > countMax) {
-			count=countMax;
-		}
+	function updateCount(index) {
+
+		amountElements[index].innerHTML=counterAmount[index];
 	}
-	
-	function updateCount() {
-	document.querySelector(".antal").innerHTML=count;
+
+	function restrictCount(index) {
+
+		if (counterAmount[index] < countMin) {
+		counterAmount[index]=countMin;
+		}
+		else				
+		if (counterAmount[index] > countMax) {
+		counterAmount[index]=countMax;
+		}
+		
 	}
-	
-});
 
 });
