@@ -1,11 +1,14 @@
 document.addEventListener ("DOMContentLoaded", () => {
 	
-	let counterAmount=[1,1,1];
+	let counterAmount=[0,0,0];
+	let priceList = [10, 33, 60];
 	let countMin=0;
 	let countMax=2000;
 	let btninElements = document.querySelectorAll(".increase");
 	let btndeElements = document.querySelectorAll(".decrease");
-	let amountElements = document.querySelectorAll(".antal")
+	let amountElements = document.querySelectorAll(".antal");
+	let totalElements = document.querySelectorAll(".total");
+	let priceElements = document.querySelectorAll(".price");
 
 	console.log(counterAmount);
 
@@ -42,6 +45,8 @@ updateCount(index);
 	function updateCount(index) {
 
 		amountElements[index].innerHTML=counterAmount[index];
+
+		totalElements[index].innerHTML=priceList[index]*counterAmount[index]+"&nbsp;kr.";
 	}
 
 	function restrictCount(index) {
